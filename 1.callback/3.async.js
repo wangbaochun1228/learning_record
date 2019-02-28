@@ -4,10 +4,7 @@
 
 // fs模块 node的一个核心模块 在node API中 所有的回调函数的第一个参数都是err error-first
 // code runner 默认会以根文件夹为基准
-import fs from 'fs'
-
-// let fs = require('fs');
-console.log(fs)
+let fs = require('fs');
 
 function after(times, fn) {
     let arr = []
@@ -31,3 +28,6 @@ fs.readFile('./directory.txt', 'utf-8', function (err, data) {
 fs.readFile('./file.txt', 'utf-8', function (err, data) {
     out(data)
 })
+
+// 发布订阅 promise redux eventBus 
+// 观察者模式(基因发布订阅的)
