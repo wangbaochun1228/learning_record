@@ -143,32 +143,6 @@ Promise.defer = Promise.deferred = function () {
     return dfd;
 }
 
-Promise.all = function (values) {
-    return new Promise((resolve, reject) => {
-        let arr = [] // 用来收集最后返回的参数
-        let index = 0;
-
-        function processData(key, value) {
-            index++
-            arr[key] = value;
-            if (index === values.length) { // 如果最终的结果的个数和values的个数相等 抛出结果即可
-                resolve(arr);
-            }
-        }
-        for (let i = 0; i < values.length; i++) {
-            let current = values[i];
-            if (current && current.then && typeof current.then === 'function') {
-                // 认定当前current 是一个promise,所以调用then拿到promise成后的值
-                current.then(y => {
-                    processData(i, y);
-                }, reject)
-            } else {
-                processData(i, current)
-            }
-        }
-    })
-}
-
 module.exports = Promise;
 
 // npm i -g promises-aplus-tests
